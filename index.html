@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Area with Character Counter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      width: 550px;
+    }
+    .counter {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    textarea {
+      width: 500px;
+      height: 100px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      resize: none;
+      margin-bottom: 15px;
+    }
+    .warning {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      color: #fff;
+      background: #2575fc;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1b5dc1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="title" class="counter">0/200 characters</div>
+    <textarea id="messageBox" maxlength="200"></textarea>
+    <div id="warningMessage" class="warning" style="display: none;">You have reached the character limit!</div>
+    <button id="submitButton">Submit</button>
+  </div>
+
+  <script>
+    const messageBox = document.getElementById("messageBox");
+    const title = document.getElementById("title");
+    const warningMessage = document.getElementById("warningMessage");
+    const submitButton = document.getElementById("submitButton");
+    const maxChars = 200;
+
+    messageBox.addEventListener("input", () => {
+      const currentLength = messageBox.value.length;
+      title.textContent = `${currentLength}/${maxChars} characters`;
+
+      if (currentLength === maxChars) {
+        warningMessage.style.display = "block";
+      } else {
+        warningMessage.style.display = "none";
+      }
+    });
+
+    submitButton.addEventListener("click", () => {
+      alert("Form Submitted!");
+    });
+  </script>
+</body>
+</html>
